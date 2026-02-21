@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project/cubit/counter_cubit.dart';
-import 'package:project/my_home_page.dart';
+import 'package:project/add_toadd_page.dart';
+import 'package:project/cubit/todo_cubit.dart';
+import 'package:project/todo_list.dart';
+// import 'package:flutter_bloc/flutter_bloc.dart';
+// import 'package:project/bloc/counter_bloc.dart';
+// import 'package:project/cubit/counter_cubit.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,16 +17,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_)=>CounterCubit(),
-      
-        child:  MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Flutter Demo',
-          theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
-          home: const MyHomePage(title: 'Flutter Demo Home Page'),
-        )
-      
+      create: (context) => TodoCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Flutter Demo',
+        theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+        initialRoute: '/',
+        routes: {'/': (_) => TodoList(), '/add-todo': (_) => AddTodoPage()},
+      ),
     );
   }
 }
-
